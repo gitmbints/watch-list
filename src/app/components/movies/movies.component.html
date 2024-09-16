@@ -1,6 +1,6 @@
-@if (movies) {
+@if (response$ | async; as response) {
   <ul class="divide-y divide-gray-400">
-    @for (movie of movies; track movie.id) {
+    @for (movie of response.results; track movie.id) {
       <li>
         <h2>{{ movie.title }}</h2>
         <p>{{ movie.overview }}</p>
