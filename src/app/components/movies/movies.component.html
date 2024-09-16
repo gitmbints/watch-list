@@ -1,0 +1,10 @@
+@if (movies) {
+  <ul class="divide-y divide-gray-400">
+    @for (movie of movies; track movie.id) {
+      <li>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.overview }}</p>
+      </li>
+    }
+  </ul>
+}
