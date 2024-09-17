@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, inject, OnInit } from '@angular/core';
-import { Movies } from '../../models/movies';
+import { Movie} from '../../models/movie';
 import { DiscoverPageContent } from '../../models/response';
 import { MoviesService } from '../../services/movies.service';
 import { AsyncPipe } from '@angular/common';
@@ -15,7 +15,7 @@ import { SkeletonCardComponent } from '../skeleton/skeleton-card/skeleton-card.c
   styleUrl: './movies.component.css',
 })
 export class MoviesComponent implements OnInit {
-  response$!: Observable<DiscoverPageContent<Movies>>;
+  response$!: Observable<DiscoverPageContent<Movie>>;
 
   moviesService = inject(MoviesService);
 

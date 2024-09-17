@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { DiscoverPageContent } from '../models/response';
 import { Observable } from 'rxjs';
-import { Movies } from '../models/movies';
+import { Movie } from '../models/movie';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,8 @@ export class MoviesService {
   private _API_KEY = environment.tmdb.apiKey;
   private http = inject(HttpClient);
 
-  loadMovies(): Observable<DiscoverPageContent<Movies>> {
-    return this.http.get<DiscoverPageContent<Movies>>(
+  loadMovies(): Observable<DiscoverPageContent<Movie>> {
+    return this.http.get<DiscoverPageContent<Movie>>(
       `${this._BASE_URL}/trending/movie/day?language=en-US`,
       {
         headers: {
@@ -23,5 +23,17 @@ export class MoviesService {
         },
       },
     );
+  }
+
+  getMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(
+      `${this._BASE_URL}/movie/${id}?language=en-US`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${this._API_KEY}`,
+        },
+      },
+    )
   }
 }

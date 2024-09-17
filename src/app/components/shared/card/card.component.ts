@@ -1,10 +1,10 @@
 import { Component, inject, input, OnInit } from '@angular/core';
-import { Movies } from '../../../models/movies';
+import { Movie } from '../../../models/movie';
 import { MoviesService } from '../../../services/movies.service';
 import { Config } from '../../../models/config';
 import { ConfigurationService } from '../../../services/configuration.service';
 import { AsyncPipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -22,8 +22,9 @@ export class CardComponent implements OnInit {
   movieService = inject(MoviesService);
   configService = inject(ConfigurationService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
 
-  movie = input.required<Movies>();
+  movie = input.required<Movie>();
   config!: Config;
   imgBaseUrl: string = '';
   movieId!: number;
@@ -40,5 +41,11 @@ export class CardComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.movieId = Number(params.get('id'));
     })
+  }
+
+  goToItems(movie: Movie) {
+    const movieId = movie ? movie.id : null;
+
+    this.router.navigate(['/movie', { id: movieId  }])
   }
 }
