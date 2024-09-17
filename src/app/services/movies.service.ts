@@ -15,7 +15,7 @@ export class MoviesService {
 
   loadMovies(): Observable<DiscoverPageContent<Movie>> {
     return this.http.get<DiscoverPageContent<Movie>>(
-      `${this._BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc'`,
+      `${this._BASE_URL}/trending/movie/day?language=en-US`,
       {
         headers: {
           accept: 'application/json',
