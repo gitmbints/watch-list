@@ -2,11 +2,11 @@
   class="rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
 >
   @if (imgBaseUrl) {
-      <img
-        class="w-full rounded-t-lg object-cover"
-        [src]="imgBaseUrl + movie().poster_path || ''"
-        [alt]="movie().title"
-      />
+    <img
+      class="w-full rounded-t-lg object-cover"
+      [src]="imgBaseUrl + movie().poster_path"
+      [alt]="movie().title"
+    />
   }
 
   <div class="p-5">
@@ -15,9 +15,8 @@
     >
       {{ movie().title }}
     </h5>
-
     <a
-      (click)="goToItems(movie())"
+      [routerLink]="'/movie/' + movie().id"
       class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     >
       Details

@@ -1,1 +1,33 @@
-<p>{{ (movie$ | async)?.title }}</p>
+<div class="container mx-auto my-12 h-full w-full">
+  @if (movie) {
+    <div class="flex flex-col gap-10 md:flex-row">
+      @if (imgBaseUrl) {
+        <img
+          class="max-w-52 rounded"
+          [src]="imgBaseUrl + movie.poster_path"
+          [alt]="movie.title"
+        />
+      }
+
+      <div class="text-white">
+        <h2 class="mb-4 text-lg font-bold md:text-3xl">{{ movie.title }}</h2>
+        <p class="text-sm font-medium">{{ movie.tagline }}</p>
+        <p class="mt-8">{{ movie.overview }}</p>
+        <ul class="mt-8 flex items-center space-x-2">
+          <li>Genres:</li>
+          @for (genre of movie.genres; track genre.id) {
+            <li
+              class="me-3 rounded bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300"
+            >
+              {{ genre.name }}
+            </li>
+          }
+        </ul>
+        <p class="mt-8">Duration: {{ movie.runtime }}mn</p>
+        <p class="mt-8">Release date: {{ movie.release_date | date }}</p>
+      </div>
+    </div>
+  } @else {
+    <p>Loading...</p>
+  }
+</div>

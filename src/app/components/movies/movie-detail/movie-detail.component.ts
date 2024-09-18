@@ -1,26 +1,71 @@
-import { Movie } from './../../../models/movie';
-import { Component, inject } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  inject,
+  input,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { Movie } from '../../../models/movie';
 import { MoviesService } from '../../../services/movies.service';
-import { AsyncPipe } from '@angular/common';
+import { ConfigurationService } from '../../../services/configuration.service';
+import { Config } from '../../../models/config';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, DatePipe],
   templateUrl: './movie-detail.component.html',
-  styleUrl: './movie-detail.component.css'
+  styleUrl: './movie-detail.component.css',
 })
-export class MovieDetailComponent {
-  route = inject(ActivatedRoute);
-  router = inject(Router);
+export class MovieDetailComponent implements OnInit {
   moviesService = inject(MoviesService);
-  movie$!: Observable<Movie>;
+  configService = inject(ConfigurationService);
+  renderer = inject(Renderer2);
+  hostElement = inject(ElementRef);
+  cdr = inject(ChangeDetectorRef);
 
-  ngOnInit(): void {
-    const movieId = this.route.snapshot.paramMap.get('id');
-    this.movie$ = this.moviesService.getMovie(Number(movieId));
+  id = input<string>();
+  movie!: Movie;
+  config!: Config;
+  imgBaseUrl: string = '';
+
+  ngOnInit() {
+    this.moviesService.getMovie(Number(this.id())).subscribe({
+      next: (movie) => {
+        this.movie = movie;
+      },
+      error: (err) => {
+        console.error('Error fetching movie:', err);
+      },
+    });
+
+    this.configService.getConfig().subscribe({
+      next: (config) => {
+        this.config = config;
+        this.imgBaseUrl =
+          this.config.images.base_url + this.config.images.poster_sizes[3];
+        this.updateHostBackground();
+      },
+    });
   }
 
+  // Update the background image on the :host element
+  updateHostBackground() {
+    if (this.movie) {
+      const backgroundImageUrl = `linear-gradient(
+    to top,
+    #243b55,
+    #141e30
+  ), url(${this.config.images.base_url + this.config.images.backdrop_sizes[3] + this.movie.backdrop_path})`;
+      this.renderer.setStyle(
+        this.hostElement.nativeElement,
+        'background-image',
+        backgroundImageUrl,
+      );
+    }
+    this.cdr.detectChanges();
+  }
 }

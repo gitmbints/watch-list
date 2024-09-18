@@ -34,6 +34,6 @@ export class MoviesService {
           Authorization: `Bearer ${this._API_KEY}`,
         },
       },
-    )
+    );
   }
 }

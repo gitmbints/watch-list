@@ -4,17 +4,12 @@ import { MoviesService } from '../../../services/movies.service';
 import { Config } from '../../../models/config';
 import { ConfigurationService } from '../../../services/configuration.service';
 import { AsyncPipe } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
-
-    
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
@@ -37,15 +32,5 @@ export class CardComponent implements OnInit {
           this.config.images.base_url + this.config.images.poster_sizes[3];
       },
     });
-
-    this.route.paramMap.subscribe((params) => {
-      this.movieId = Number(params.get('id'));
-    })
-  }
-
-  goToItems(movie: Movie) {
-    const movieId = movie ? movie.id : null;
-
-    this.router.navigate(['/movie', { id: movieId  }])
   }
 }

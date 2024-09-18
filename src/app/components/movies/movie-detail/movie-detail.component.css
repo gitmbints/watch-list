@@ -1,0 +1,8 @@
+:host {
+  flex: 1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-blend-mode: hard-light;
+}
