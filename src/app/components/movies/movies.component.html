@@ -1,4 +1,4 @@
-<div class="container mx-auto my-12">
+<div class="mx-auto my-12 max-w-screen-xl">
   @if (response$ | async; as response) {
     <app-movies-list [movies]="response.results"></app-movies-list>
   } @else {
