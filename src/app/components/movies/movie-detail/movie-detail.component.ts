@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  inject,
-  input,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Movie } from '../../../models/movie';
 import { MoviesService } from '../../../services/movies.service';
@@ -19,26 +11,30 @@ import { Config } from '../../../models/config';
   imports: [AsyncPipe, DatePipe],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css',
+  host: {
+    '[style.background-image]': 'backgroundImage',
+  },
 })
 export class MovieDetailComponent implements OnInit {
   moviesService = inject(MoviesService);
   configService = inject(ConfigurationService);
-  renderer = inject(Renderer2);
-  hostElement = inject(ElementRef);
-  cdr = inject(ChangeDetectorRef);
+  backgroundImage: string = '';
 
   id = input<string>();
   movie!: Movie;
   config!: Config;
   imgBaseUrl: string = '';
+  isLoading: boolean = true;
 
   ngOnInit() {
     this.moviesService.getMovie(Number(this.id())).subscribe({
       next: (movie) => {
         this.movie = movie;
+        this.updateBackgroundImage();
       },
       error: (err) => {
         console.error('Error fetching movie:', err);
+        this.isLoading = false;
       },
     });
 
@@ -47,25 +43,24 @@ export class MovieDetailComponent implements OnInit {
         this.config = config;
         this.imgBaseUrl =
           this.config.images.base_url + this.config.images.poster_sizes[3];
-        this.updateHostBackground();
+
+        this.updateBackgroundImage();
+      },
+      error: (err) => {
+        console.error('Error fetching config:', err);
+        this.isLoading = false;
       },
     });
   }
 
-  // Update the background image on the :host element
-  updateHostBackground() {
-    if (this.movie) {
-      const backgroundImageUrl = `linear-gradient(
+  updateBackgroundImage() {
+    if (this.movie && this.config) {
+      this.backgroundImage = `linear-gradient(
     to top,
     #243b55,
     #141e30
   ), url(${this.config.images.base_url + this.config.images.backdrop_sizes[3] + this.movie.backdrop_path})`;
-      this.renderer.setStyle(
-        this.hostElement.nativeElement,
-        'background-image',
-        backgroundImageUrl,
-      );
+      this.isLoading = false;
     }
-    this.cdr.detectChanges();
   }
 }

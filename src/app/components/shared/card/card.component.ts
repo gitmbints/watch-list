@@ -14,10 +14,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './card.component.css',
 })
 export class CardComponent implements OnInit {
-  movieService = inject(MoviesService);
+  moviesService = inject(MoviesService);
   configService = inject(ConfigurationService);
-  route = inject(ActivatedRoute);
-  router = inject(Router);
 
   movie = input.required<Movie>();
   config!: Config;
@@ -30,6 +28,14 @@ export class CardComponent implements OnInit {
         this.config = config;
         this.imgBaseUrl =
           this.config.images.base_url + this.config.images.poster_sizes[3];
+      },
+    });
+  }
+
+  addToWatchList(id: number) {
+    this.moviesService.addMovieToWatchList(id).subscribe({
+      next: (obj) => {
+        console.log(obj);
       },
     });
   }

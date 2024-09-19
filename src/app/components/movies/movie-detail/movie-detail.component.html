@@ -1,5 +1,5 @@
-<div class="mx-auto my-12 h-full w-full max-w-screen-xl">
-  @if (movie) {
+@if (movie && !isLoading) {
+  <div class="mx-auto my-12 h-full w-full max-w-screen-xl">
     <div class="flex flex-col gap-10 md:flex-row">
       @if (imgBaseUrl) {
         <img
@@ -27,7 +27,7 @@
         <p class="mt-8">Release date: {{ movie.release_date | date }}</p>
       </div>
     </div>
-  } @else {
-    <p>Loading...</p>
-  }
-</div>
+  </div>
+} @else {
+  <p>Loading...</p>
+}
