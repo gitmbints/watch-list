@@ -59,4 +59,13 @@ export class MoviesService {
       { headers: this.headers },
     );
   }
+
+  loadTvSeries(): Observable<DiscoverPageContent<Movie>> {
+    return this.http.get<DiscoverPageContent<Movie>>(
+      `${this._BASE_URL}/trending/tv/day?language=en-US`,
+      {
+        headers: this.headers,
+      },
+    );
+  }
 }

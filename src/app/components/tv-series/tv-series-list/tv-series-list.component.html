@@ -1,0 +1,10 @@
+<h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
+  Trending Tv Series
+</h1>
+<div
+  class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+>
+  @for (movie of tvSeries(); track movie.id) {
+    <app-card [movie]="movie"></app-card>
+  }
+</div>
