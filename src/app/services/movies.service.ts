@@ -68,4 +68,18 @@ export class MoviesService {
       },
     );
   }
+
+  addTvSerieToWatchList(id: number): Observable<Object> {
+    const body = {
+      media_type: 'tv',
+      media_id: id,
+      watchlist: true,
+    };
+
+    return this.http.post<Object>(
+      `${this._BASE_URL}/account/9391691/watchlist`,
+      body,
+      { headers: this.headers },
+    );
+  }
 }

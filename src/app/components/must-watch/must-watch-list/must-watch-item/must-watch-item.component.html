@@ -1,0 +1,45 @@
+<div class="rounded-lg border border-gray-200">
+  @if (imgBaseUrl) {
+    <img
+      class="w-full rounded-t-lg object-cover"
+      [src]="imgBaseUrl + movie().poster_path"
+      [alt]="movie().title"
+    />
+  }
+
+  <div class="p-5">
+    <h5 class="mb-3 text-xl font-bold tracking-tight text-white md:text-2xl">
+      {{ movie().title }}
+    </h5>
+    <div class="flex items-center justify-between">
+      <a
+        [routerLink]="'/movie/' + movie().id"
+        class="focus:ring-white-300 inline-flex items-center rounded-lg border border-white bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-transparent hover:text-white focus:outline-none focus:ring-4"
+      >
+        Details
+        <svg
+          class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
+        </svg>
+      </a>
+
+      <button
+        class="focus:ring-white-300 inline-flex items-center rounded-lg border border-red-500 bg-red-400 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-4"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+</div>
+

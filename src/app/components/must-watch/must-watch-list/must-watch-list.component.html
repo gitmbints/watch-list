@@ -5,6 +5,6 @@
   class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 >
   @for (movie of movies(); track movie.id) {
-    <app-card [movie]="movie"></app-card>
+    <app-must-watch-item [movie]="movie"></app-must-watch-item>
   }
 </div>

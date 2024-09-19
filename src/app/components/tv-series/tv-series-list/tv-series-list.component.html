@@ -4,7 +4,7 @@
 <div
   class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 >
-  @for (movie of tvSeries(); track movie.id) {
-    <app-card [movie]="movie"></app-card>
+  @for (tvSerie of tvSeries(); track tvSerie.id) {
+    <app-tv-serie-item [tvSerie]="tvSerie"></app-tv-serie-item>
   }
 </div>
