@@ -1,4 +1,4 @@
-<nav class="border-gray-200 bg-transparent dark:bg-gray-900">
+<nav class="border-gray-200 bg-transparent">
   <div
     class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
   >
@@ -13,7 +13,7 @@
     >
       <button
         type="button"
-        class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 md:me-0"
+        class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 md:me-0"
         id="user-menu-button"
         aria-expanded="false"
         data-dropdown-toggle="user-dropdown"
@@ -28,7 +28,7 @@
       </button>
       <!-- Dropdown menu -->
       <div
-        class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
+        class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow"
         id="user-dropdown"
       >
         <div class="px-4 py-3">
@@ -43,7 +43,7 @@
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200"
               >Log-out</a
             >
           </li>
@@ -52,7 +52,7 @@
       <button
         data-collapse-toggle="navbar-user"
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
         aria-controls="navbar-user"
         aria-expanded="false"
       >
@@ -68,7 +68,7 @@
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
+            stroke-width="1"
             d="M1 1h15M1 7h15M1 13h15"
           />
         </svg>
@@ -83,22 +83,25 @@
       >
         <li>
           <a
-            routerLink="/must-watch"
-            class="block rounded px-3 py-2 text-white hover:text-gray-100 md:p-0 md:hover:bg-transparent"
-            >Must Watch</a
+            routerLink="/to-watch"
+            routerLinkActive="active"
+            class="relative block rounded px-3 py-2 text-gray-200 hover:text-white md:p-0 md:hover:bg-transparent"
+            >To Watch</a
           >
         </li>
         <li>
           <a
             routerLink="/movies"
-            class="block rounded px-3 py-2 text-white hover:text-gray-100 md:p-0 md:hover:bg-transparent"
+            routerLinkActive="active"
+            class="relative block rounded px-3 py-2 text-gray-200 hover:text-white md:p-0 md:hover:bg-transparent"
             >Movies</a
           >
         </li>
         <li>
           <a
             routerLink="/tv-series"
-            class="block rounded px-3 py-2 text-white hover:text-gray-100 md:p-0 md:hover:bg-transparent"
+            routerLinkActive="active"
+            class="relative block rounded px-3 py-2 text-gray-200 hover:text-white md:p-0 md:hover:bg-transparent"
             >TV Series</a
           >
         </li>

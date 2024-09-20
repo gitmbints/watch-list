@@ -7,7 +7,7 @@ import { TvSerieDetailComponent } from './components/tv-series/tv-serie-detail/t
 
 export const routes: Routes = [
   {
-    path: 'must-watch',
+    path: 'to-watch',
     component: MustWatchComponent,
   },
   {
@@ -28,7 +28,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/must-watch',
+    redirectTo: '/to-watch',
     pathMatch: 'full',
   },
 ];
