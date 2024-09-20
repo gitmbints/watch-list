@@ -1,21 +1,21 @@
-@if (movie && !isLoading) {
+@if (tvSerie && !isLoading) {
   <div class="mx-auto my-12 h-full w-full max-w-screen-xl px-4 xl:px-0">
     <div class="flex flex-col gap-10 md:flex-row">
       @if (imgBaseUrl) {
         <img
           class="w-full rounded md:max-w-60"
-          [src]="imgBaseUrl + movie.poster_path"
-          [alt]="movie.title"
+          [src]="imgBaseUrl + tvSerie.poster_path"
+          [alt]="tvSerie.title"
         />
       }
 
       <div class="text-white">
-        <h2 class="mb-4 text-lg font-bold md:text-3xl">{{ movie.title }}</h2>
-        <p class="text-sm font-medium">{{ movie.tagline }}</p>
-        <p class="mt-8">{{ movie.overview }}</p>
+        <h2 class="mb-4 text-lg font-bold md:text-3xl">{{ tvSerie.name }}</h2>
+        <p class="text-sm font-medium">{{ tvSerie.tagline }}</p>
+        <p class="mt-8">{{ tvSerie.overview }}</p>
         <ul class="mt-8 flex flex-wrap items-center gap-2">
           <li>Genres:</li>
-          @for (genre of movie.genres; track genre.id) {
+          @for (genre of tvSerie.genres; track genre.id) {
             <li
               class="rounded bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300"
             >
@@ -23,8 +23,8 @@
             </li>
           }
         </ul>
-        <p class="mt-8">Duration: {{ movie.runtime }}mn</p>
-        <p class="mt-8">Release date: {{ movie.release_date | date }}</p>
+        <p class="mt-8">Number of seasons: {{ tvSerie.number_of_seasons }}</p>
+        <p class="mt-8">Number of episodes: {{ tvSerie.number_of_episodes }}</p>
       </div>
     </div>
   </div>

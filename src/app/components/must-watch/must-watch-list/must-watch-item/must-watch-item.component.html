@@ -1,45 +1,37 @@
-<div class="rounded-lg border border-gray-200">
+<app-card>
   @if (imgBaseUrl) {
     <img
       class="w-full rounded-t-lg object-cover"
       [src]="imgBaseUrl + movie().poster_path"
       [alt]="movie().title"
+      ngProjectAs="card-image"
     />
   }
 
-  <div class="p-5">
-    <h5 class="mb-3 text-xl font-bold tracking-tight text-white md:text-2xl">
-      {{ movie().title }}
-    </h5>
-    <div class="flex items-center justify-between">
-      <a
-        [routerLink]="'/movie/' + movie().id"
-        class="focus:ring-white-300 inline-flex items-center rounded-lg border border-white bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-transparent hover:text-white focus:outline-none focus:ring-4"
-      >
-        Details
-        <svg
-          class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-      </a>
+  <ng-container ngProjectAs="card-title">
+    {{ movie().title }}
+  </ng-container>
 
-      <button
-        class="focus:ring-white-300 inline-flex items-center rounded-lg border border-red-500 bg-red-400 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-4"
-      >
-        Remove
-      </button>
-    </div>
-  </div>
-</div>
-
+  <button
+    class="focus:ring-white-300 inline-flex items-center rounded-lg border border-green-500 bg-green-400 px-3 py-2 text-center text-sm font-medium text-white hover:bg-green-500 hover:text-white focus:outline-none focus:ring-4"
+  >
+    Mark as watched
+    <svg
+      class="ms-2 h-3.5 w-3.5"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m8.032 12 1.984 1.984 4.96-4.96m4.55 5.272.893-.893a1.984 1.984 0 0 0 0-2.806l-.893-.893a1.984 1.984 0 0 1-.581-1.403V7.04a1.984 1.984 0 0 0-1.984-1.984h-1.262a1.983 1.983 0 0 1-1.403-.581l-.893-.893a1.984 1.984 0 0 0-2.806 0l-.893.893a1.984 1.984 0 0 1-1.403.581H7.04A1.984 1.984 0 0 0 5.055 7.04v1.262c0 .527-.209 1.031-.581 1.403l-.893.893a1.984 1.984 0 0 0 0 2.806l.893.893c.372.372.581.876.581 1.403v1.262a1.984 1.984 0 0 0 1.984 1.984h1.262c.527 0 1.031.209 1.403.581l.893.893a1.984 1.984 0 0 0 2.806 0l.893-.893a1.985 1.985 0 0 1 1.403-.581h1.262a1.984 1.984 0 0 0 1.984-1.984V15.7c0-.527.209-1.031.581-1.403Z"
+      />
+    </svg>
+  </button>
+</app-card>

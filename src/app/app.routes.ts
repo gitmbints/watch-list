@@ -3,6 +3,7 @@ import { MustWatchComponent } from './components/must-watch/must-watch.component
 import { MoviesComponent } from './components/movies/movies.component';
 import { TvSeriesComponent } from './components/tv-series/tv-series.component';
 import { MovieDetailComponent } from './components/movies/movie-detail/movie-detail.component';
+import { TvSerieDetailComponent } from './components/tv-series/tv-serie-detail/tv-serie-detail.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'tv-series',
     component: TvSeriesComponent,
+  },
+  {
+    path: 'tv-serie/:id',
+    component: TvSerieDetailComponent,
   },
   {
     path: '',

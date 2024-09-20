@@ -10,7 +10,7 @@ import { CardComponent } from '../../../shared/card/card.component';
   standalone: true,
   imports: [RouterLink, CardComponent],
   templateUrl: './must-watch-item.component.html',
-  styleUrl: './must-watch-item.component.css'
+  styleUrl: './must-watch-item.component.css',
 })
 export class MustWatchItemComponent {
   configService = inject(ConfigurationService);

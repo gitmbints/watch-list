@@ -1,8 +1,13 @@
-export interface Movie {
+export type Movie = {
   adult: false;
   backdrop_path: string;
   genre_ids: number[];
-  genres: Genre[];
+  genres: [
+    {
+      id: number;
+      name: string;
+    },
+  ];
   id: number;
   original_language: string;
   original_title: string;
@@ -16,9 +21,12 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
+};
 
-interface Genre {
-  id: number;
+type Serie = {
   name: string;
-}
+  number_of_episodes: number;
+  number_of_seasons: number;
+};
+
+export type TvSerie = Movie & Serie;

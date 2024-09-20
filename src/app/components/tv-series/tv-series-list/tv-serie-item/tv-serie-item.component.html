@@ -1,64 +1,60 @@
-<div class="rounded-lg border border-gray-200">
+<app-card>
   @if (imgBaseUrl) {
     <img
       class="w-full rounded-t-lg object-cover"
       [src]="imgBaseUrl + tvSerie().poster_path"
       [alt]="tvSerie().title"
+      ngProjectAs="card-image"
     />
   }
 
-  <div class="p-5">
-    <h5 class="mb-3 text-xl font-bold tracking-tight text-white md:text-2xl">
-      {{ tvSerie().title }}
-    </h5>
-    <div class="flex items-center justify-between">
-      <a
-        [routerLink]="'/movie/' + tvSerie().id"
-        class="focus:ring-white-300 inline-flex items-center rounded-lg border border-white bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-transparent hover:text-white focus:outline-none focus:ring-4"
-      >
-        Details
-        <svg
-          class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-      </a>
+  <ng-container ngProjectAs="card-title">
+    {{ tvSerie().title }}
+  </ng-container>
 
-      <span
-        class="cursor-pointer"
-        title="Watch me"
-        (click)="addToWatchList(tvSerie().id)"
-      >
-        <svg
-          class="h-[34px] w-[34px] text-white"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1"
-            d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-          />
-        </svg>
-      </span>
-    </div>
-  </div>
-</div>
+  <a
+    [routerLink]="'/tv-serie/' + tvSerie().id"
+    class="focus:ring-white-300 inline-flex items-center rounded-lg border border-white bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-transparent hover:text-white focus:outline-none focus:ring-4"
+  >
+    Details
+    <svg
+      class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M1 5h12m0 0L9 1m4 4L9 9"
+      />
+    </svg>
+  </a>
 
-
+  <span
+    class="cursor-pointer"
+    title="Watch me"
+    (click)="addToWatchList(tvSerie().id)"
+  >
+    <svg
+      class="h-[34px] w-[34px] text-white"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1"
+        d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+      />
+    </svg>
+  </span>
+</app-card>

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Movie } from '../../../models/movie';
+import { Movie, TvSerie } from '../../../models/movie';
 import { CardComponent } from '../../shared/card/card.component';
 import { MustWatchItemComponent } from './must-watch-item/must-watch-item.component';
 
@@ -12,4 +12,5 @@ import { MustWatchItemComponent } from './must-watch-item/must-watch-item.compon
 })
 export class MustWatchListComponent {
   movies = input<Movie[]>();
+  tvSeries = input<TvSerie[]>();
 }

@@ -10,9 +10,9 @@ import { CardComponent } from '../../../shared/card/card.component';
 @Component({
   selector: 'app-movie-item',
   standalone: true,
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink, CardComponent],
   templateUrl: './movie-item.component.html',
-  styleUrl: './movie-item.component.css'
+  styleUrl: './movie-item.component.css',
 })
 export class MovieItemComponent implements OnInit {
   moviesService = inject(MoviesService);

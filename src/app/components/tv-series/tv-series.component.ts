@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DiscoverPageContent } from '../../models/response';
-import { Movie } from '../../models/movie';
+import { TvSerie } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 import { AsyncPipe } from '@angular/common';
 import { SkeletonCardComponent } from '../skeleton/skeleton-card/skeleton-card.component';
@@ -15,7 +15,7 @@ import { TvSeriesListComponent } from './tv-series-list/tv-series-list.component
   styleUrl: './tv-series.component.css',
 })
 export class TvSeriesComponent {
-  response$!: Observable<DiscoverPageContent<Movie>>;
+  response$!: Observable<DiscoverPageContent<TvSerie>>;
 
   moviesService = inject(MoviesService);
 

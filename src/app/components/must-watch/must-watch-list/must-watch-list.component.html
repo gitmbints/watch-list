@@ -1,10 +1,26 @@
-<h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
-  Must watch movies
-</h1>
-<div
-  class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
->
-  @for (movie of movies(); track movie.id) {
-    <app-must-watch-item [movie]="movie"></app-must-watch-item>
-  }
+<div class="flex flex-col gap-10">
+  <section>
+    <h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
+      Must watch movies
+    </h1>
+    <div
+      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      @for (movie of movies(); track movie.id) {
+        <app-must-watch-item [movie]="movie"></app-must-watch-item>
+      }
+    </div>
+  </section>
+  <section>
+    <h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
+      Must watch Tv Series
+    </h1>
+    <div
+      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      @for (serie of tvSeries(); track serie.id) {
+        <app-must-watch-item [movie]="serie"></app-must-watch-item>
+      }
+    </div>
+  </section>
 </div>
