@@ -1,8 +1,44 @@
-<h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">Trending movies</h1>
+
+<form class="mx-auto mb-8 w-fit" (ngSubmit)="searchMovie()">
+  <label for="search-movie" class="block mb-2 text-base font-medium text-white">Search movie</label>
+  <div class="inline-flex items-center gap-4">
+    <div class="relative max-w-sm w-full">
+      <input [(ngModel)]="searchQuery" type="text" id="search-movie" name="search-movie" class="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pe-10 p-2.5" placeholder="Movie's title">
+      <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+        </svg>
+      </div>
+
+    </div>
+    <button
+      type="submit"
+      class="focus:ring-white-300 inline-flex items-center rounded-lg border border-white bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-transparent hover:text-white focus:outline-none focus:ring-4"
+    >
+      Search
+    </button>
+  </div>
+</form>
+
+
+<h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
+  @if (searchResponse$) {
+    Results for : {{ searchQuery }}
+  } @else {
+    Trending movies
+  }
+</h1>
+
 <div
   class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 >
-  @for (movie of movies(); track movie.id) {
-    <app-movie-item [movie]="movie"></app-movie-item>
+  @if (searchResponse$ | async; as response) {
+    @for (movie of response.results; track movie.id) {
+      <app-movie-item [movie]="movie"></app-movie-item>
+    }
+  } @else {
+    @for (movie of movies(); track movie.id) {
+      <app-movie-item [movie]="movie"></app-movie-item>
+    }
   }
 </div>

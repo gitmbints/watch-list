@@ -19,40 +19,36 @@ export class MoviesService {
     Authorization: `Bearer ${this._API_KEY}`,
   });
 
-
   /* Movie services */
 
   loadMovies(): Observable<DiscoverPageContent<Movie>> {
-    return this.http.get<DiscoverPageContent<Movie>>(
-      `${this._BASE_URL}/trending/movie/day?language=en-US`,
-      {
-        headers: this.headers,
-      },
-    ).pipe(
-      catchError((error) => this.handleError(error, []))
-    );
+    return this.http
+      .get<DiscoverPageContent<Movie>>(
+        `${this._BASE_URL}/trending/movie/day?language=en-US`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
   }
 
   getMovie(id: number): Observable<Movie | undefined> {
-    return this.http.get<Movie>(
-      `${this._BASE_URL}/movie/${id}?language=en-US`,
-      {
+    return this.http
+      .get<Movie>(`${this._BASE_URL}/movie/${id}?language=en-US`, {
         headers: this.headers,
-      },
-    ).pipe(
-      catchError((error) => this.handleError(error, undefined))
-    );
+      })
+      .pipe(catchError((error) => this.handleError(error, undefined)));
   }
 
   loadWatchListOfMovies(): Observable<DiscoverPageContent<Movie>> {
-    return this.http.get<DiscoverPageContent<Movie>>(
-      `${this._BASE_URL}/account/9391691/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc'`,
-      {
-        headers: this.headers,
-      },
-    ).pipe(
-      catchError((error) => this.handleError(error, []))
-    );
+    return this.http
+      .get<DiscoverPageContent<Movie>>(
+        `${this._BASE_URL}/account/9391691/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc'`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
   }
 
   addMovieToWatchList(id: number): Observable<Object> {
@@ -62,45 +58,54 @@ export class MoviesService {
       watchlist: true,
     };
 
-    return this.http.post<Object>(
-      `${this._BASE_URL}/account/9391691/watchlist`,
-      body,
-      { headers: this.headers },
-    ).pipe(
-      catchError((error) => this.handleError(error, null))
-    );
+    return this.http
+      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, null)));
+  }
+
+  searchMovie(title: string): Observable<DiscoverPageContent<Movie>> {
+    return this.http
+      .get<Movie>(
+        `${this._BASE_URL}/search/movie?query=${title}&include_adult=false&language=en-US&page=1`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
   }
 
   /* Tv Serie services */
 
   loadTvSeries(): Observable<DiscoverPageContent<TvSerie>> {
-    return this.http.get<DiscoverPageContent<TvSerie>>(
-      `${this._BASE_URL}/trending/tv/day?language=en-US`,
-      {
-        headers: this.headers,
-      },
-    ).pipe(
-      catchError((error) => this.handleError(error, []))
-    );
+    return this.http
+      .get<DiscoverPageContent<TvSerie>>(
+        `${this._BASE_URL}/trending/tv/day?language=en-US`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
   }
 
   getTvSerie(id: number): Observable<TvSerie | undefined> {
-    return this.http.get<TvSerie>(`${this._BASE_URL}/tv/${id}?language=en-US`, {
-      headers: this.headers,
-    }).pipe(
-      catchError((error) => this.handleError(error, undefined))
-    );
+    return this.http
+      .get<TvSerie>(`${this._BASE_URL}/tv/${id}?language=en-US`, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, undefined)));
   }
 
   loadWatchListOfTvSeries(): Observable<DiscoverPageContent<TvSerie>> {
-    return this.http.get<DiscoverPageContent<TvSerie>>(
-      `${this._BASE_URL}/account/9391691/watchlist/tv?language=en-US&page=1&sort_by=created_at.asc'`,
-      {
-        headers: this.headers,
-      },
-    ).pipe(
-      catchError((error) => this.handleError(error, []))
-    );
+    return this.http
+      .get<DiscoverPageContent<TvSerie>>(
+        `${this._BASE_URL}/account/9391691/watchlist/tv?language=en-US&page=1&sort_by=created_at.asc'`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
   }
 
   addTvSerieToWatchList(id: number): Observable<Object> {
@@ -110,13 +115,11 @@ export class MoviesService {
       watchlist: true,
     };
 
-    return this.http.post<Object>(
-      `${this._BASE_URL}/account/9391691/watchlist`,
-      body,
-      { headers: this.headers },
-    ).pipe(
-      catchError((error) => this.handleError(error, null))
-    );
+    return this.http
+      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, null)));
   }
 
   /* Error handling */
