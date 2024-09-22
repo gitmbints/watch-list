@@ -21,7 +21,7 @@ export class TvSerieDetailComponent {
   backgroundImage: string = '';
 
   id = input<string>();
-  tvSerie!: TvSerie;
+  tvSerie!: TvSerie | undefined;
   config!: Config;
   imgBaseUrl: string = '';
   isLoading: boolean = true;
