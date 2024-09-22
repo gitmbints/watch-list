@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Config } from '../models/config';
 
@@ -19,6 +19,15 @@ export class ConfigurationService {
         accept: 'application/json',
         Authorization: `Bearer ${this._API_KEY}`,
       },
-    });
+    }).pipe(
+      catchError(error => this.handleError(error, undefined))
+    );
+  }
+
+  /* Error handling */
+
+  private handleError(error: Error, errorValue: any) {
+    console.error(error);
+    return of(errorValue);
   }
 }
