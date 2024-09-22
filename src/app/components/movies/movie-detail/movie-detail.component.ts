@@ -21,7 +21,7 @@ export class MovieDetailComponent implements OnInit {
   backgroundImage: string = '';
 
   id = input<string>();
-  movie!: Movie;
+  movie!: Movie | undefined;
   config!: Config;
   imgBaseUrl: string = '';
   isLoading: boolean = true;
