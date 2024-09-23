@@ -2,20 +2,21 @@
   @if (imgBaseUrl) {
     <img
       class="w-full rounded-t-lg object-cover"
-      [src]="imgBaseUrl + movie().poster_path"
-      [alt]="movie().title"
+      [src]="imgBaseUrl + (movie()?.poster_path || tvSerie()?.poster_path)"
+      [alt]="movie()?.title || tvSerie()?.name"
       ngProjectAs="card-image"
     />
   }
 
   <ng-container ngProjectAs="card-title">
-    {{ movie().title }}
+    {{ movie()?.title || tvSerie()?.name }}
   </ng-container>
 
   <button
     class="focus:ring-white-300 inline-flex items-center rounded-lg border border-green-500 bg-green-400 px-3 py-2 text-center text-sm font-medium text-white hover:bg-green-500 hover:text-white focus:outline-none focus:ring-4"
+    (click)="removeItem(movie()?.id || (tvSerie()?.id ?? 0))"
   >
-    Mark as watched
+    Watched
     <svg
       class="ms-2 h-3.5 w-3.5"
       aria-hidden="true"

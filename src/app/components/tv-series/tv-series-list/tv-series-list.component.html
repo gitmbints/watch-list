@@ -55,11 +55,17 @@
 </h1>
 
 <div
-  class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+  class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 >
   @if (searchResponse$ | async; as response) {
     @for (tvSerie of response.results; track tvSerie.id) {
       <app-tv-serie-item [tvSerie]="tvSerie"></app-tv-serie-item>
+    } @empty {
+      <p
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-semibold text-white"
+      >
+        No results found
+      </p>
     }
   } @else {
     @for (tvSerie of tvSeries(); track tvSerie.id) {

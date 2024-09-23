@@ -4,10 +4,19 @@
       Must watch movies
     </h1>
     <div
-      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       @for (movie of movies(); track movie.id) {
-        <app-must-watch-item [movie]="movie"></app-must-watch-item>
+        <app-must-watch-item
+          [movie]="movie"
+          (onRemoveItem)="handleDelete($event)"
+        ></app-must-watch-item>
+      } @empty {
+        <p
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-semibold text-white"
+        >
+          No movie to watch
+        </p>
       }
     </div>
   </section>
@@ -16,10 +25,19 @@
       Must watch Tv Series
     </h1>
     <div
-      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       @for (serie of tvSeries(); track serie.id) {
-        <app-must-watch-item [movie]="serie"></app-must-watch-item>
+        <app-must-watch-item
+          [tvSerie]="serie"
+          (onRemoveItem)="handleDelete($event)"
+        ></app-must-watch-item>
+      } @empty {
+        <p
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-semibold text-white"
+        >
+          No Tv Serie to watch
+        </p>
       }
     </div>
   </section>
