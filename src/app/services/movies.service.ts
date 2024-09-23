@@ -65,6 +65,20 @@ export class MoviesService {
       .pipe(catchError((error) => this.handleError(error, null)));
   }
 
+  deleteMovieFromWatchList(id: number): Observable<Object> {
+    const body = {
+      media_type: 'movie',
+      media_id: id,
+      watchlist: false,
+    };
+
+    return this.http
+      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, null)));
+  }
+
   searchMovie(title: string): Observable<DiscoverPageContent<Movie>> {
     return this.http
       .get<Movie>(
@@ -113,6 +127,20 @@ export class MoviesService {
       media_type: 'tv',
       media_id: id,
       watchlist: true,
+    };
+
+    return this.http
+      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, null)));
+  }
+
+  deleteTvSerieFromWatchList(id: number): Observable<Object> {
+    const body = {
+      media_type: 'tv',
+      media_id: id,
+      watchlist: false,
     };
 
     return this.http

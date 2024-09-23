@@ -1,9 +1,10 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { ConfigurationService } from '../../../../services/configuration.service';
-import { Movie } from '../../../../models/movie';
+import { Movie, TvSerie } from '../../../../models/movie';
 import { Config } from '../../../../models/config';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../../shared/card/card.component';
+import { MoviesService } from '../../../../services/movies.service';
 
 @Component({
   selector: 'app-must-watch-item',
@@ -15,9 +16,11 @@ import { CardComponent } from '../../../shared/card/card.component';
 export class MustWatchItemComponent {
   configService = inject(ConfigurationService);
 
-  movie = input.required<Movie>();
+  movie = input<Movie>();
+  tvSerie = input<TvSerie>();
   config!: Config;
   imgBaseUrl: string = '';
+  onRemoveItem = output<number>();
 
   ngOnInit(): void {
     this.configService.getConfig().subscribe({
@@ -27,5 +30,9 @@ export class MustWatchItemComponent {
           this.config.images.base_url + this.config.images.poster_sizes[3];
       },
     });
+  }
+
+  removeItem(id: number) {
+    this.onRemoveItem.emit(id);
   }
 }
