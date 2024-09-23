@@ -122,6 +122,17 @@ export class MoviesService {
       .pipe(catchError((error) => this.handleError(error, null)));
   }
 
+  searchTvSerie(title: string): Observable<DiscoverPageContent<TvSerie>> {
+    return this.http
+      .get<TvSerie>(
+        `${this._BASE_URL}/search/tv?query=${title}&include_adult=false&language=en-US&page=1`,
+        {
+          headers: this.headers,
+        },
+      )
+      .pipe(catchError((error) => this.handleError(error, [])));
+  }
+
   /* Error handling */
 
   private handleError(error: Error, errorValue: any) {

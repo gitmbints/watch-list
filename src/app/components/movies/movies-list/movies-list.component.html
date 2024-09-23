@@ -1,15 +1,41 @@
-
-<form class="mx-auto mb-8 w-fit" (ngSubmit)="searchMovie()">
-  <label for="search-movie" class="block mb-2 text-base font-medium text-white">Search movie</label>
-  <div class="inline-flex items-center gap-4">
-    <div class="relative max-w-sm w-full">
-      <input [(ngModel)]="searchQuery" type="text" id="search-movie" name="search-movie" class="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pe-10 p-2.5" placeholder="Movie's title">
-      <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
-        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+<form
+  class="mx-auto mb-8 flex w-full max-w-md flex-col"
+  (ngSubmit)="searchMovie()"
+>
+  <label for="search-movie" class="mb-2 block text-base font-medium text-white"
+    >Search movie</label
+  >
+  <div class="flex items-center gap-4">
+    <div class="relative flex-1">
+      <input
+        [(ngModel)]="searchQuery"
+        type="text"
+        id="search-movie"
+        name="search-movie"
+        class="block w-full rounded-lg border border-gray-300 bg-transparent p-2.5 pe-10 text-sm text-white focus:border-blue-500 focus:ring-blue-500"
+        placeholder="Movie's title"
+        required
+      />
+      <div
+        class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3.5"
+      >
+        <svg
+          class="h-5 w-5 text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+            d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+          />
         </svg>
       </div>
-
     </div>
     <button
       type="submit"
@@ -20,9 +46,8 @@
   </div>
 </form>
 
-
 <h1 class="mb-8 text-2xl font-bold text-white md:text-4xl">
-  @if (searchResponse$) {
+  @if (searchResponse$ | async) {
     Results for : {{ searchQuery }}
   } @else {
     Trending movies
