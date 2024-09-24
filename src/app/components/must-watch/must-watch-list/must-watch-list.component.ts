@@ -2,6 +2,8 @@ import { Component, inject, input } from '@angular/core';
 import { Movie, TvSerie } from '../../../models/movie';
 import { MustWatchItemComponent } from './must-watch-item/must-watch-item.component';
 import { MoviesService } from '../../../services/movies.service';
+import { TOAST_STATE, ToastService } from '../../../services/toast.service';
+import { Response } from '../../../models/response';
 
 @Component({
   selector: 'app-must-watch-list',
@@ -11,7 +13,8 @@ import { MoviesService } from '../../../services/movies.service';
   styleUrl: './must-watch-list.component.css',
 })
 export class MustWatchListComponent {
-  moviesService = inject(MoviesService);
+  moviesService: MoviesService = inject(MoviesService);
+  toast: ToastService = inject(ToastService);
 
   movies = input<Movie[]>();
   tvSeries = input<TvSerie[]>();
@@ -27,11 +30,14 @@ export class MustWatchListComponent {
         : this.moviesService.deleteTvSerieFromWatchList(id);
 
       deleteMethod.subscribe({
-        next: (obj) => {
-          console.log(obj);
+        next: (response: Response) => {
+          if (response.success) {
+            this.toast.showToast(TOAST_STATE.success, response.status_message);
+            this.toast.dismissToastAfterDelay();
+          }
         },
         error: (err) => {
-          console.error('Error on calling delete api: ', err);
+          this.toast.showToast(TOAST_STATE.danger, err);
         },
       });
     }

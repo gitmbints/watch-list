@@ -15,7 +15,7 @@ import { DiscoverPageContent } from '../../../models/response';
   styleUrl: './movies-list.component.css',
 })
 export class MoviesListComponent {
-  moviesService = inject(MoviesService);
+  moviesService: MoviesService = inject(MoviesService);
 
   movies = input<Movie[]>();
   searchQuery: string = '';

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { createComponent, inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { DiscoverPageContent } from '../models/response';
+import { DiscoverPageContent, Response } from '../models/response';
 import { catchError, Observable, of } from 'rxjs';
 import { Movie, TvSerie } from '../models/movie';
 
@@ -51,7 +51,7 @@ export class MoviesService {
       .pipe(catchError((error) => this.handleError(error, [])));
   }
 
-  addMovieToWatchList(id: number): Observable<Object> {
+  addMovieToWatchList(id: number): Observable<Response> {
     const body = {
       media_type: 'movie',
       media_id: id,
@@ -59,13 +59,13 @@ export class MoviesService {
     };
 
     return this.http
-      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+      .post<Response>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
         headers: this.headers,
       })
       .pipe(catchError((error) => this.handleError(error, null)));
   }
 
-  deleteMovieFromWatchList(id: number): Observable<Object> {
+  deleteMovieFromWatchList(id: number): Observable<Response> {
     const body = {
       media_type: 'movie',
       media_id: id,
@@ -73,7 +73,7 @@ export class MoviesService {
     };
 
     return this.http
-      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+      .post<Response>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
         headers: this.headers,
       })
       .pipe(catchError((error) => this.handleError(error, null)));
@@ -122,7 +122,7 @@ export class MoviesService {
       .pipe(catchError((error) => this.handleError(error, [])));
   }
 
-  addTvSerieToWatchList(id: number): Observable<Object> {
+  addTvSerieToWatchList(id: number): Observable<Response> {
     const body = {
       media_type: 'tv',
       media_id: id,
@@ -130,13 +130,13 @@ export class MoviesService {
     };
 
     return this.http
-      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+      .post<Response>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
         headers: this.headers,
       })
       .pipe(catchError((error) => this.handleError(error, null)));
   }
 
-  deleteTvSerieFromWatchList(id: number): Observable<Object> {
+  deleteTvSerieFromWatchList(id: number): Observable<Response> {
     const body = {
       media_type: 'tv',
       media_id: id,
@@ -144,7 +144,7 @@ export class MoviesService {
     };
 
     return this.http
-      .post<Object>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
+      .post<Response>(`${this._BASE_URL}/account/9391691/watchlist`, body, {
         headers: this.headers,
       })
       .pipe(catchError((error) => this.handleError(error, null)));

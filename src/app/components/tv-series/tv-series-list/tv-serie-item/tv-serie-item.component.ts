@@ -5,6 +5,8 @@ import { Config } from '../../../../models/config';
 import { RouterLink } from '@angular/router';
 import { MoviesService } from '../../../../services/movies.service';
 import { CardComponent } from '../../../shared/card/card.component';
+import { TOAST_STATE, ToastService } from '../../../../services/toast.service';
+import { Response } from '../../../../models/response';
 
 @Component({
   selector: 'app-tv-serie-item',
@@ -14,8 +16,9 @@ import { CardComponent } from '../../../shared/card/card.component';
   styleUrl: './tv-serie-item.component.css',
 })
 export class TvSerieItemComponent {
-  configService = inject(ConfigurationService);
-  moviesService = inject(MoviesService);
+  configService: ConfigurationService = inject(ConfigurationService);
+  moviesService: MoviesService = inject(MoviesService);
+  toast: ToastService = inject(ToastService);
 
   tvSerie = input.required<TvSerie>();
   config!: Config;
@@ -33,8 +36,15 @@ export class TvSerieItemComponent {
 
   addToWatchList(id: number) {
     this.moviesService.addTvSerieToWatchList(id).subscribe({
-      next: (obj) => {
-        console.log(obj);
+      next: (response: Response) => {
+        if (response.success) {
+          this.toast.showToast(TOAST_STATE.success, response.status_message);
+          this.toast.dismissToastAfterDelay();
+        }
+      },
+      error: (err) => {
+        this.toast.showToast(TOAST_STATE.danger, err);
+        this.toast.dismissToastAfterDelay();
       },
     });
   }

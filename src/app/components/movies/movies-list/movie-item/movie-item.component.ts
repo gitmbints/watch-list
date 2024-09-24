@@ -6,6 +6,8 @@ import { Config } from '../../../../models/config';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../../shared/card/card.component';
+import { TOAST_STATE, ToastService } from '../../../../services/toast.service';
+import { Response } from '../../../../models/response';
 
 @Component({
   selector: 'app-movie-item',
@@ -15,8 +17,9 @@ import { CardComponent } from '../../../shared/card/card.component';
   styleUrl: './movie-item.component.css',
 })
 export class MovieItemComponent implements OnInit {
-  moviesService = inject(MoviesService);
-  configService = inject(ConfigurationService);
+  moviesService: MoviesService = inject(MoviesService);
+  configService: ConfigurationService = inject(ConfigurationService);
+  toast: ToastService = inject(ToastService);
 
   movie = input.required<Movie>();
   config!: Config;
@@ -34,8 +37,14 @@ export class MovieItemComponent implements OnInit {
 
   addToWatchList(id: number) {
     this.moviesService.addMovieToWatchList(id).subscribe({
-      next: (obj) => {
-        console.log(obj);
+      next: (response: Response) => {
+        if (response.success) {
+          this.toast.showToast(TOAST_STATE.success, response.status_message);
+          this.toast.dismissToastAfterDelay();
+        }
+      },
+      error: (err) => {
+        this.toast.showToast(TOAST_STATE.danger, err);
       },
     });
   }
