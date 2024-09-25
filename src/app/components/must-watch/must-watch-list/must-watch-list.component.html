@@ -6,7 +6,7 @@
     <div
       class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
-      @for (movie of movies(); track movie.id) {
+      @for (movie of moviesState; track movie.id) {
         <app-must-watch-item
           [movie]="movie"
           (onRemoveItem)="handleDelete($event)"
@@ -27,7 +27,7 @@
     <div
       class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
-      @for (serie of tvSeries(); track serie.id) {
+      @for (serie of tvSeriesState; track serie.id) {
         <app-must-watch-item
           [tvSerie]="serie"
           (onRemoveItem)="handleDelete($event)"
