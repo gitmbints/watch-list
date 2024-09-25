@@ -23,7 +23,7 @@
             </li>
           }
         </ul>
-        <p class="mt-8">Duration: {{ movie.runtime }}mn</p>
+        <p class="mt-8">Duration: {{ movie.runtime | duration }}</p>
         <p class="mt-8">Release date: {{ movie.release_date | date }}</p>
       </div>
     </div>

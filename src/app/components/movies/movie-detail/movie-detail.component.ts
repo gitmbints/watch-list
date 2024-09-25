@@ -4,11 +4,12 @@ import { Movie } from '../../../models/movie';
 import { MoviesService } from '../../../services/movies.service';
 import { ConfigurationService } from '../../../services/configuration.service';
 import { Config } from '../../../models/config';
+import { DurationPipe } from '../../../pipe/duration.pipe';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
-  imports: [AsyncPipe, DatePipe],
+  imports: [AsyncPipe, DatePipe, DurationPipe],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css',
   host: {
