@@ -16,10 +16,22 @@ import {
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.css',
   animations: [
-    trigger('toastTrigger', [
-      state('open', style({ transform: 'translateY(0%)' })),
-      state('close', style({ transform: 'translateY(100%)' })),
-      transition('open <=> close', [animate('300ms 100ms ease-in-out')]),
+    trigger('showToast', [
+      state(
+        'open',
+        style({
+          opacity: 1,
+          transform: 'translateY(0)',
+        }),
+      ),
+      state(
+        'close',
+        style({
+          opacity: 0,
+          transform: 'translateY(100%)',
+        }),
+      ),
+      transition('open <=> close', [animate('200ms ease-in-out')]),
     ]),
   ],
 })
