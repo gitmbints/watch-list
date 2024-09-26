@@ -10,13 +10,13 @@ import { Movie, TvSerie } from '../models/movie';
 })
 export class MoviesService {
   private _BASE_URL = environment.tmdb.baseUrl;
-  private _API_KEY = environment.tmdb.apiKey;
+  private TOKEN = environment.tmdb.token;
   private http = inject(HttpClient);
 
   private headers = new HttpHeaders({
     accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${this._API_KEY}`,
+    Authorization: `Bearer ${this.TOKEN}`,
   });
 
   /* Movie services */
