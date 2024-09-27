@@ -28,6 +28,8 @@ export class LoginComponent {
                 next: (response) => {
                   localStorage.setItem('session_id', response.session_id);
                   console.log('Session établie');
+                  this.authService.checkIsLoggedIn();
+                  console.log('isLoggedIn: ', this.authService.isLoggedIn);
                 },
                 error: (err) => {
                   console.error(err);

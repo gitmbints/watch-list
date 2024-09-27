@@ -8,6 +8,11 @@ import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
@@ -30,10 +35,5 @@ export const routes: Routes = [
   {
     path: 'tv-serie/:id',
     component: TvSerieDetailComponent,
-  },
-  {
-    path: '',
-    redirectTo: '/to-watch',
-    pathMatch: 'full',
   },
 ];

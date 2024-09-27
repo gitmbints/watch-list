@@ -7,6 +7,8 @@ import { catchError, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn: boolean = false;
+
   private BASE_URL = environment.tmdb.baseUrl;
   private TOKEN = environment.tmdb.token;
   private http = inject(HttpClient);
@@ -17,7 +19,9 @@ export class AuthService {
     Authorization: `Bearer ${this.TOKEN}`,
   });
 
-  constructor() { }
+  constructor() { 
+    this.isLoggedIn = this.checkIsLoggedIn();
+  }
 
   // Step 1 -- Get request Token
   getRequestToken(): Observable<any> {
@@ -56,9 +60,19 @@ export class AuthService {
     }).pipe(catchError((error) => this.handleError(error, null)));
   }
 
+  logout(): void {
+    localStorage.removeItem('session_id');
+    this.isLoggedIn = false;
+  }
+
   /* Error handling */
   private handleError(error: Error, errorValue: any) {
     console.error(error);
     return of(errorValue);
   }
+
+  checkIsLoggedIn(): boolean {
+    return localStorage.length > 0 ? true : false;
+  } 
+
 }
