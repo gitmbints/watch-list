@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  hasError: boolean = false;
   private request_token: string = '';
 
   authService: AuthService = inject(AuthService);
@@ -38,8 +39,11 @@ export class LoginComponent {
                     console.error(err);
                   },
                 });
+
+                this.hasError = false;
               } else {
                 console.error('Validation failed');
+                this.hasError = true;
               }
             },
             error: (err) => {
