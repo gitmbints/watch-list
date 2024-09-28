@@ -1,16 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
+  private isAuthenticatedSubject: BehaviorSubject<boolean>;
 
   private BASE_URL = environment.tmdb.baseUrl;
   private TOKEN = environment.tmdb.token;
+
   private http = inject(HttpClient);
 
   private headers = new HttpHeaders({
@@ -19,50 +20,73 @@ export class AuthService {
     Authorization: `Bearer ${this.TOKEN}`,
   });
 
-  constructor() { 
-    this.isLoggedIn = this.checkIsLoggedIn();
+  constructor() {
+    this.isAuthenticatedSubject = new BehaviorSubject<boolean>(
+      this.isAuthenticated(),
+    );
   }
 
   // Step 1 -- Get request Token
   getRequestToken(): Observable<any> {
     const url = `${this.BASE_URL}/authentication/token/new`;
 
-    return this.http.get<any>(url,
-      {
+    return this.http
+      .get<any>(url, {
         headers: this.headers,
-      }
-    ).pipe(catchError((error) => this.handleError(error, undefined)));
+      })
+      .pipe(catchError((error) => this.handleError(error, {})));
   }
 
   // Step 2 -- Validate request Token with login
-  validateWithLogin(username: string, password: string, request_token: string): Observable<any> {
+  validateWithLogin(
+    username: string,
+    password: string,
+    request_token: string,
+  ): Observable<any> {
     const url = `${this.BASE_URL}/authentication/token/validate_with_login`;
     const body = {
       username,
       password,
-      request_token
-    }
+      request_token,
+    };
 
-    return this.http.post<any>(url, body, {
-      headers: this.headers
-    }).pipe(catchError((error) => this.handleError(error, null)));
+    return this.http
+      .post<any>(url, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, {})));
   }
 
   // Step 3 -- Create Session
   createSession(request_token: string): Observable<any> {
     const url = `${this.BASE_URL}/authentication/session/new`;
     const body = {
-      request_token
-    }
+      request_token,
+    };
 
-    return this.http.post<any>(url, body, {
-      headers: this.headers
-    }).pipe(catchError((error) => this.handleError(error, null)));
+    return this.http
+      .post<any>(url, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError((error) => this.handleError(error, {})));
+  }
+
+  setSession(sessionId: string): void {
+    localStorage.setItem('session_id', sessionId);
+    this.isAuthenticatedSubject.next(true);
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('session_id');
+  }
+
+  getAuthStatus(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
   }
 
   logout(): void {
     localStorage.removeItem('session_id');
-    this.isLoggedIn = false;
+    this.isAuthenticatedSubject.next(false);
   }
 
   /* Error handling */
@@ -70,9 +94,4 @@ export class AuthService {
     console.error(error);
     return of(errorValue);
   }
-
-  checkIsLoggedIn(): boolean {
-    return localStorage.length > 0 ? true : false;
-  } 
-
 }

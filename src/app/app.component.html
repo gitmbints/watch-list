@@ -1,9 +1,9 @@
-@if (authService.isLoggedIn) {
+@if (isLoggedIn) {
   <nav class="border-gray-200 bg-transparent">
     <div
       class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
     >
-      <a routerLink="" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <a routerLink="/to-watch" class="flex items-center space-x-3 rtl:space-x-reverse">
         <span
           class="self-center whitespace-nowrap text-2xl font-semibold text-white"
           >Watch List</span
@@ -116,42 +116,42 @@
 
 <router-outlet></router-outlet>
 
-@if (authService.isLoggedIn) {
-<footer class="mt-auto">
-  <div
-    class="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
-  >
-    <span class="text-sm text-white sm:text-center"
-      >© 2024 Crafted with ❤️ by Mbints
-    </span>
-    <ul
-      class="mt-3 flex flex-wrap items-center text-sm font-medium text-white sm:mt-0"
+@if (isLoggedIn) {
+  <footer class="mt-auto">
+    <div
+      class="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
     >
-      <li>
-        <a
-          href="https://github.com/gitmbints"
-          target="_blank"
-          class="me-4 hover:underline md:me-6"
-          >Github</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://www.linkedin.com/in/ambinintsoa-harimanana-rakotonirina-a00b88191/"
-          target="_blank"
-          class="me-4 hover:underline md:me-6"
-          >Linkedin</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://developer.themoviedb.org"
-          target="_blank"
-          class="me-4 hover:underline md:me-6"
-          >TMDB™</a
-        >
-      </li>
-    </ul>
-  </div>
-</footer>
+      <span class="text-sm text-white sm:text-center"
+        >© 2024 Crafted with ❤️ by Mbints
+      </span>
+      <ul
+        class="mt-3 flex flex-wrap items-center text-sm font-medium text-white sm:mt-0"
+      >
+        <li>
+          <a
+            href="https://github.com/gitmbints"
+            target="_blank"
+            class="me-4 hover:underline md:me-6"
+            >Github</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/ambinintsoa-harimanana-rakotonirina-a00b88191/"
+            target="_blank"
+            class="me-4 hover:underline md:me-6"
+            >Linkedin</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.themoviedb.org"
+            target="_blank"
+            class="me-4 hover:underline md:me-6"
+            >TMDB™</a
+          >
+        </li>
+      </ul>
+    </div>
+  </footer>
 }
