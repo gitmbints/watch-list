@@ -8,17 +8,9 @@ import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 })
 export class AuthService {
   private isAuthenticatedSubject: BehaviorSubject<boolean>;
-
   private BASE_URL = environment.tmdb.baseUrl;
-  private TOKEN = environment.tmdb.token;
 
   private http = inject(HttpClient);
-
-  private headers = new HttpHeaders({
-    accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${this.TOKEN}`,
-  });
 
   constructor() {
     this.isAuthenticatedSubject = new BehaviorSubject<boolean>(
@@ -31,9 +23,7 @@ export class AuthService {
     const url = `${this.BASE_URL}/authentication/token/new`;
 
     return this.http
-      .get<any>(url, {
-        headers: this.headers,
-      })
+      .get<any>(url)
       .pipe(catchError((error) => this.handleError(error, {})));
   }
 
@@ -51,9 +41,7 @@ export class AuthService {
     };
 
     return this.http
-      .post<any>(url, body, {
-        headers: this.headers,
-      })
+      .post<any>(url, body)
       .pipe(catchError((error) => this.handleError(error, {})));
   }
 
@@ -65,9 +53,7 @@ export class AuthService {
     };
 
     return this.http
-      .post<any>(url, body, {
-        headers: this.headers,
-      })
+      .post<any>(url, body)
       .pipe(catchError((error) => this.handleError(error, {})));
   }
 

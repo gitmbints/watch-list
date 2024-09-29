@@ -9,18 +9,12 @@ import { Config } from '../models/config';
 })
 export class ConfigurationService {
   private _BASE_URL = environment.tmdb.baseUrl;
-  private TOKEN = environment.tmdb.token;
 
   http = inject(HttpClient);
 
   getConfig(): Observable<Config> {
     return this.http
-      .get<Config>(`${this._BASE_URL}/configuration`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${this.TOKEN}`,
-        },
-      })
+      .get<Config>(`${this._BASE_URL}/configuration`)
       .pipe(catchError((error) => this.handleError(error, undefined)));
   }
 
