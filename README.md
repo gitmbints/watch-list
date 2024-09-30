@@ -1,27 +1,62 @@
-# WatchList
+# Watch List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
+![Watch List App](./src/assets/watchList.png)
 
-## Development server
+Watch List is an app that lets you save and organize movies or series you plan to watch later.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Démo en direct
 
-## Code scaffolding
+Try the live demo [here.](https://ng-pokemon-app-ca2d5.web.app)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+1. Log in with your TMDB account credentials.
+2. Use the app with the features listed below.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+- **Search** : Quickly find a movie or series via the search bar.
+- **Media details** : View synopsis, episodes, and other information.
+- **Save media:** : Add items to your personal watch list.
+- **Remove media** : Remove an item from the list once you've watched it.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Technologies
 
-## Running end-to-end tests
+- **Angular** : Main framework.
+- **TypeScript** : Development language.
+- **HTML & CSS** : Structure and styling.
+- **Git** : Control verion.
+- **GitHub Page** : Hosting.
+- **TMDB** : For media data
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Installation
 
-## Further help
+1. Clone the repository: :
+   ```bash
+   git clone https://github.com/votre-utilisateur/watch-list.git
+   ```
+2. Navigate to the project folder: :
+   ```bash
+   cd watch-list
+   ```
+3. Install dependencies :
+   ```bash
+   npm install
+   ```
+4. Start the app :
+   ```bash
+   npm start
+   ```
+5. Open `http://localhost:4200` in your browser.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Contributing
+
+Contributions are welcome :
+
+1. Fork the repository.
+2. Create a branch (`git checkout -b feature/my-feature`).
+3. Commit your changes (`git commit -m 'feat: my new feature'`).
+4. Push the branch (`git push origin feature/my-feature`).
+5. Open a Pull Request.
+
+## Thank you for checking out this project!
