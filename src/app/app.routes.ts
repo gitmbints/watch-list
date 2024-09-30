@@ -6,6 +6,7 @@ import { MovieDetailComponent } from './components/movies/movie-detail/movie-det
 import { TvSerieDetailComponent } from './components/tv-series/tv-serie-detail/tv-serie-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   {
@@ -41,5 +42,9 @@ export const routes: Routes = [
     path: 'tv-serie/:id',
     component: TvSerieDetailComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
