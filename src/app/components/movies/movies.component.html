@@ -2,7 +2,9 @@
   @if (response$ | async; as response) {
     <app-movies-list [movies]="response.results"></app-movies-list>
   } @else {
-    <div class="grid grid-cols-4 gap-8">
+    <div
+      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
       <app-skeleton-card></app-skeleton-card>
       <app-skeleton-card></app-skeleton-card>
       <app-skeleton-card></app-skeleton-card>
