@@ -11,13 +11,9 @@ export const TOAST_STATE = {
   providedIn: 'root',
 })
 export class ToastService {
-  public showsToast$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false,
-  );
-  public toastMessage$: BehaviorSubject<string> = new BehaviorSubject<string>(
-    'Item moved successfully.',
-  );
-  public toastState$: BehaviorSubject<string> = new BehaviorSubject<string>(
+  showsToast$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  toastMessage$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  toastState$: BehaviorSubject<string> = new BehaviorSubject<string>(
     TOAST_STATE.success,
   );
 

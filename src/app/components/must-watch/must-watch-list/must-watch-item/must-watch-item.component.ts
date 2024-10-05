@@ -4,7 +4,6 @@ import { Movie, TvSerie } from '../../../../models/movie';
 import { Config } from '../../../../models/config';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../../shared/card/card.component';
-import { MoviesService } from '../../../../services/movies.service';
 
 @Component({
   selector: 'app-must-watch-item',

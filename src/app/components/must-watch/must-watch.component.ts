@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { combineLatest, map, Observable } from 'rxjs';
 import { DiscoverPageContent } from '../../models/response';
 import { Movie, TvSerie } from '../../models/movie';
@@ -14,7 +14,7 @@ import { MustWatchListComponent } from './must-watch-list/must-watch-list.compon
   templateUrl: './must-watch.component.html',
   styleUrl: './must-watch.component.css',
 })
-export class MustWatchComponent {
+export class MustWatchComponent implements OnInit {
   responseMovie$!: Observable<DiscoverPageContent<Movie>>;
   responseTvSeries$!: Observable<DiscoverPageContent<TvSerie>>;
   combinedResponse$!: Observable<{
