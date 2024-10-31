@@ -6,7 +6,7 @@ Watch List is an app that lets you save and organize movies or series you plan t
 
 ## Demo Live
 
-Try the live demo [here.](https://ng-pokemon-app-ca2d5.web.app)
+Try the live demo [here.](https://gitmbints.github.io/watch-list/login)
 
 Account to test:
 
